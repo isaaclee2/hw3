@@ -67,9 +67,17 @@ void dealloc(Node* head)
 //   function object struct declarations
 // -----------------------------------------------
 
-
-
-
+class Odd {
+  public:
+    bool operator()(int val){
+      if(val%2==1){
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
+};
 
 int main(int argc, char* argv[])
 {
@@ -87,8 +95,19 @@ int main(int argc, char* argv[])
 
     // Test out your linked list code
 
+    Node* small = nullptr;
+    Node* large = nullptr;
+    llpivot(head, small, large, 5);
 
+    print(small);
+    dealloc(small);
+    print(large);
+    dealloc(large);
 
+    head = readList(argv[1]);
+    head = llfilter(head, Odd());
+    print(head);
+    dealloc(head);
     
     return 0;
 
